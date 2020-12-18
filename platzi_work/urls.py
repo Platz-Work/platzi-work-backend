@@ -16,8 +16,18 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path, re_path
+
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+
+@api_view(['GET'])
+def get_health_check(_):
+    return Response()
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/', include([
+        path('health/', get_health_check),
+    ]))
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
