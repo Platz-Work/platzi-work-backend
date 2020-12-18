@@ -1,1 +1,1 @@
-web: gunicorn platzi_work.wsgi
+web: gunicorn platzi_work.wsgi --log-file -
