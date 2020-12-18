@@ -76,8 +76,12 @@ WSGI_APPLICATION = 'platzi_work.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'dcm7l22k3t0osk',
+        'USER': 'nywnisvkpaangh',
+        'PASSWORD': 'dd81c13368b86a2a7c8986342f03fe8c5bdc7248550738752590290075bc3dfd',
+        'HOST': 'ec2-54-236-122-55.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
@@ -128,5 +132,5 @@ STATICFILES_DIRS = (
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
-# if config('DJANGO_PRODUCTION_ENV', default=False, cast=bool):     
+# if config('DJANGO_PRODUCTION_ENV', default=False, cast=bool):
 #     from .settings_production import *
