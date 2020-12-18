@@ -29,5 +29,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include([
         path('health/', get_health_check),
+        # path('auth/', include('rest_framework.urls')),
     ]))
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
