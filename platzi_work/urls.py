@@ -20,15 +20,24 @@ from django.urls import include, path, re_path
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
+
 
 @api_view(['GET'])
 def get_health_check(_):
     return Response()
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include([
         path('health/', get_health_check),
-        # path('auth/', include('rest_framework.urls')),
+        path('token/', include([
+            path('', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+            path('refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+        ]))
     ]))
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
