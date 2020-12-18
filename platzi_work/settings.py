@@ -10,7 +10,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
+
+from environ import Env
 from pathlib import Path
+
+env = Env()  # pylint: disable=invalid-name
+Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,10 +25,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'g%m5!%d^bd@j0%j43c+z$1!2y!a1!#@hawank8so*+swxh0f+q'
+SECRET_KEY = env('SECRET_KEY')
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = ['*']
 
@@ -75,15 +81,9 @@ WSGI_APPLICATION = 'platzi_work.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'dcm7l22k3t0osk',
-        'USER': 'nywnisvkpaangh',
-        'PASSWORD': 'dd81c13368b86a2a7c8986342f03fe8c5bdc7248550738752590290075bc3dfd',
-        'HOST': 'ec2-54-236-122-55.compute-1.amazonaws.com',
-        'PORT': '5432',
-    }
+    'default': env.db('DATABASE_URL')
 }
+
 
 
 # Password validation
@@ -108,9 +108,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-co'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Bogota'
 
 USE_I18N = True
 
