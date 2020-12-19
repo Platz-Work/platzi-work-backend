@@ -1,3 +1,11 @@
-from django.shortcuts import render
+from jobs.serializers import CategorySerializer
+from rest_framework import generics
+from rest_framework.permissions import IsAuthenticated
 
-# Create your views here.
+from jobs.models import Category
+
+
+class CategoryList(generics.ListCreateAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+    permission_classes = [IsAuthenticated]
