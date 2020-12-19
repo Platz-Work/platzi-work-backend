@@ -20,3 +20,8 @@ class JobOfferList(generics.ListCreateAPIView):
     queryset = JobOffer.objects.all()
     serializer_class = JobOfferSerializer
     # permission_classes = [IsAuthenticated]
+
+class JobOfferDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = JobOffer.objects.all()
+    serializer_class = JobOfferSerializer
+    # permission_classes = [IsAuthenticated]
