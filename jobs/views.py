@@ -43,7 +43,7 @@ class JobOfferList(generics.ListAPIView):
 
         category_name = self.request.query_params.get('category', None)
         if category_name is not None :
-            query = Q(category__name=category_name)
+            query = Q(category__name__iexact=category_name)
             queryset = queryset.filter(query)
 
         english = self.request.query_params.get('english_level', None)
@@ -53,7 +53,7 @@ class JobOfferList(generics.ListAPIView):
 
         country_code = self.request.query_params.get('country', None)
         if country_code is not None :
-            query = Q(country__code=country_code)
+            query = Q(country__code__iexact=country_code)
             queryset = queryset.filter(query)
 
         return queryset
