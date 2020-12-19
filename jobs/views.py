@@ -33,12 +33,12 @@ class JobOfferList(generics.ListAPIView):
 
         s_start = self.request.query_params.get('salary_start', None)
         if s_start is not None and s_start.isnumeric():
-            query = Q(salary_start__gte=int(s_start))
+            query = Q(salary_start_usd__gte=int(s_start))
             queryset = queryset.filter(query)
 
         s_end = self.request.query_params.get('salary_end', None)
         if s_end is not None and s_end.isnumeric():
-            query = Q(salary_start__lte=int(s_end))
+            query = Q(salary_end_usd__lte=int(s_end))
             queryset = queryset.filter(query)
 
         category_name = self.request.query_params.get('category', None)
