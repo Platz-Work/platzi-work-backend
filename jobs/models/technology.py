@@ -4,8 +4,8 @@ from django.utils.text import gettext_lazy as _
 from common.models import CommonData, ErrorMessages
 
 
-class Country(CommonData):
-    model_name = 'Country'
+class Technology(CommonData):
+    model_name = 'Technology'
 
     name: str = models.CharField(
         verbose_name=_('Name'),

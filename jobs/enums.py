@@ -16,3 +16,17 @@ class EnglishLevel(DjangoEnum):
         MEDIUM: _('Medium'),
         LOW: _('Low'),
     }
+
+
+class Seniority(DjangoEnum):
+    NA = 0
+    SENIOR = 1
+    MID_LEVEL = 2
+    JUNIOR = 3
+
+    __labels__ = {
+        NA: _('Does not apply'),
+        SENIOR: _('Senior'),
+        MID_LEVEL: _('Mid level'),
+        JUNIOR: _('Junior'),
+    }

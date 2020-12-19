@@ -1,7 +1,8 @@
 from django.db import models
 from django.conf import settings
-from django_enumfield.enum import EnumField
 from django.utils.text import gettext_lazy as _
+
+from django_enumfield.enum import EnumField
 
 from common.models import CommonData, ErrorMessages
 from jobs.enums import EnglishLevel
@@ -29,15 +30,9 @@ class Profile(CommonData):
     english_level: EnglishLevel = EnumField(
         verbose_name=_('English level'),
         enum=EnglishLevel,
+        default=EnglishLevel.NA,
         error_messages=ErrorMessages.get_field(
             model=model_name, field='english_level')
-    )
-
-    country: Country = models.ForeignKey(
-        to=Country,
-        on_delete=models.PROTECT,
-        error_messages=ErrorMessages.get_field(
-            model=model_name, field='country_id')
     )
 
     category: Category = models.ForeignKey(
@@ -45,6 +40,13 @@ class Profile(CommonData):
         on_delete=models.PROTECT,
         error_messages=ErrorMessages.get_field(
             model=model_name, field='category_id')
+    )
+
+    country: Country = models.ForeignKey(
+        to=Country,
+        on_delete=models.PROTECT,
+        error_messages=ErrorMessages.get_field(
+            model=model_name, field='country_id')
     )
 
     def __str__(self):
