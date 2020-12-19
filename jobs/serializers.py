@@ -10,6 +10,8 @@ class CountrySerializer(serializers.Serializer):
     name = serializers.CharField(max_length=255)
 
 class JobOfferSerializer(serializers.ModelSerializer):
+    
     class Meta:
         model = JobOffer
         fields = '__all__'
+        depth = 1
