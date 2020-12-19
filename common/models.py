@@ -1,9 +1,8 @@
 from typing import Dict
 from uuid import UUID, uuid4
 from datetime import datetime
-from django.db.models import Func
 
-from django.contrib.gis.db.models import Model, UUIDField, DateTimeField
+from django.db.models import Model, UUIDField, DateTimeField
 
 
 class CommonData(Model):
