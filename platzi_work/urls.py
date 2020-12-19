@@ -25,6 +25,8 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 
+from users.views import RegisterView
+
 
 @api_view(['GET'])
 def get_health_check(_):
@@ -37,7 +39,8 @@ urlpatterns = [
         path('health/', get_health_check),
         path('token/', include([
             path('', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-            path('refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-        ]))
+            path('refresh/', TokenRefreshView.as_view(), name='token_refresh')
+        ])),
+        path('register/', RegisterView.as_view(), name='register'),
     ]))
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
