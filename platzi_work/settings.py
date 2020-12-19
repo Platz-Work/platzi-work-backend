@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'corsheaders',
     #Custom app
     'users',
+    'jobs',
 ]
 
 AUTH_USER_MODEL = 'users.User'
