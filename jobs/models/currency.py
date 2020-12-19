@@ -29,3 +29,6 @@ class Currency(CommonData):
 
     def __str__(self):
         return self.code
+
+    class Meta(CommonData.Meta):
+        verbose_name_plural = _('Currencies')

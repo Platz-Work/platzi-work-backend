@@ -10,9 +10,13 @@ class Category(CommonData):
     name: str = models.CharField(
         verbose_name=_('Name'),
         max_length=255,
+        unique=True,
         error_messages=ErrorMessages.get_char_field(
             model=model_name, field='name')
     )
 
     def __str__(self):
         return self.name
+
+    class Meta(CommonData.Meta):
+        verbose_name_plural = _('Categories')

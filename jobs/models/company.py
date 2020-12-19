@@ -28,3 +28,6 @@ class Company(CommonData):
 
     def __str__(self):
         return self.name
+
+    class Meta(CommonData.Meta):
+        verbose_name_plural = _('Companies')

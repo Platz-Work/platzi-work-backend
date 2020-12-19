@@ -57,6 +57,8 @@ class JobOffer(CommonData):
     country: Country = models.ForeignKey(
         to=Country,
         on_delete=models.PROTECT,
+        null=True,
+        blank=True,
         error_messages=ErrorMessages.get_field(
             model=model_name, field='country_id')
     )
@@ -64,6 +66,8 @@ class JobOffer(CommonData):
     cities: str = models.CharField(
         verbose_name=_('cities'),
         max_length=100,
+        null=True,
+        blank=True,
         error_messages=ErrorMessages.get_char_field(
             model=model_name, field='cities')
     )
@@ -74,11 +78,11 @@ class JobOffer(CommonData):
     )
 
     soft_skills: str = models.TextField(
-        verbose_name=_('Description'),
+        verbose_name=_('Soft skills'),
         null=True,
         blank=True,
         error_messages=ErrorMessages.get_field(
-            model=model_name, field='description')
+            model=model_name, field='soft_skills')
     )
 
     salary_start: int = models.PositiveIntegerField(
@@ -101,19 +105,19 @@ class JobOffer(CommonData):
     )
 
     benefits: str = models.TextField(
-        verbose_name=_('Description'),
+        verbose_name=_('Benefits'),
         null=True,
         blank=True,
         error_messages=ErrorMessages.get_field(
-            model=model_name, field='description')
+            model=model_name, field='benefits')
     )
 
     is_active: bool = models.BooleanField(
         verbose_name=_('Active'),
+        default=True,
         error_messages=ErrorMessages.get_field(
             model=model_name, field='is_active')
     )
 
     def __str__(self):
-        name: str = f'{self.position - self.description}'
-        return name[:30]
+        return f'{self.company.name} - {self.position}'

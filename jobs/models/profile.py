@@ -17,12 +17,16 @@ class Profile(CommonData):
 
     salary_start: int = models.PositiveIntegerField(
         verbose_name=_('Salary from'),
+        null=True,
+        blank=True,
         error_messages=ErrorMessages.get_field(
             model=model_name, field='salary_start')
     )
 
     salary_end: int = models.PositiveIntegerField(
         verbose_name=_('Salary up'),
+        null=True,
+        blank=True,
         error_messages=ErrorMessages.get_field(
             model=model_name, field='salary_end')
     )
@@ -38,6 +42,8 @@ class Profile(CommonData):
     category: Category = models.ForeignKey(
         to=Category,
         on_delete=models.PROTECT,
+        null=True,
+        blank=True,
         error_messages=ErrorMessages.get_field(
             model=model_name, field='category_id')
     )
@@ -45,6 +51,8 @@ class Profile(CommonData):
     country: Country = models.ForeignKey(
         to=Country,
         on_delete=models.PROTECT,
+        null=True,
+        blank=True,
         error_messages=ErrorMessages.get_field(
             model=model_name, field='country_id')
     )
