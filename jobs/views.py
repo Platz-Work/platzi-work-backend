@@ -30,6 +30,32 @@ class JobOfferList(generics.ListAPIView):
             query.add(Q(description__icontains=q), Q.OR)
             query.add(Q(company__name__icontains=q), Q.OR)
             queryset = queryset.filter(query)
+
+        s_start = self.request.query_params.get('salary_start', None)
+        if s_start is not None and s_start.isnumeric():
+            query = Q(salary_start__gte=int(s_start))
+            queryset = queryset.filter(query)
+
+        s_end = self.request.query_params.get('salary_end', None)
+        if s_end is not None and s_end.isnumeric():
+            query = Q(salary_start__lte=int(s_end))
+            queryset = queryset.filter(query)
+
+        category_name = self.request.query_params.get('category', None)
+        if category_name is not None :
+            query = Q(category__name=category_name)
+            queryset = queryset.filter(query)
+
+        english = self.request.query_params.get('english_level', None)
+        if english is not None and english.isnumeric():
+            query = Q(english_level=int(english))
+            queryset = queryset.filter(query)
+
+        country_code = self.request.query_params.get('country', None)
+        if country_code is not None :
+            query = Q(country__code=country_code)
+            queryset = queryset.filter(query)
+
         return queryset
 
 
